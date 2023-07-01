@@ -32,6 +32,18 @@ contract Voting {
         hasVoted[msg.sender] = true;
     }
 
+    function getCandidates() public view returns (string[] memory) {
+        return candidates;
+    }
+
+    function getTimeStart() public view returns (uint) {
+        return timeStart;
+    }
+
+    function getTimeEnd() public view returns (uint) {
+        return timeEnd;
+    }
+
     function getWinner() public view returns (string memory) {
         require(block.timestamp > timeEnd, "Voting is still ongoing.");
         uint maxVotes = 0;
