@@ -1,13 +1,9 @@
-# Sample Hardhat Project
+# Final Assignment - Solidity Course
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+The assignment specification can be found [here](https://github.com/zaro/smart-contracts-with-solidity/blob/main/lesson-5/3-Final-Assignment.md).
 
-Try running some of the following tasks:
+## How to run the project
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+## Author
+
+- [Julián Benítez Gutiérrez](github.com/JulianBenitez99)

@@ -26,4 +26,42 @@ const waitNextBlock = async () => {
   });
 };
 
-describe("Voting", function () {});
+describe("Voting", function () {
+  let candidates = ["Xbox", "Playstation", "Nintendo", "PC"];
+  let accounts;
+
+  let votingValid;
+  let votingExpired;
+
+  this.beforeAll(async () => {
+    accounts = await ethers.getSigners();
+    timeStart = Math.floor(Date.now() / 1000) - 60;
+    timeEnd = timeStart + 3600;
+    let vote = await ethers.getContractFactory("Voting");
+    votingValid = await vote.deploy(timeStart, timeEnd, candidates);
+    await votingValid.deployed();
+
+    timeStart = Math.floor(Date.now() / 1000) - 3600;
+    timeEnd = timeStart + 3600;
+    votingExpired = await vote.deploy(timeStart, timeEnd, candidates);
+    await votingExpired.deployed();
+  });
+
+  it("Should allow to vote", async function () {
+    await votingValid.connect(accounts[0]).vote("Xbox");
+    let voteCount = await votingValid.getVoteCount("Xbox");
+    expect(voteCount).to.equal(1);
+  });
+
+  it("Should not allow to vote in invalid time", async function () {
+    await expect(
+      votingExpired.connect(accounts[0]).vote("Xbox")
+    ).to.be.revertedWith("Voting is only not allowed at this time.");
+  });
+
+  it("Should not allow to vote twice", async function () {
+    await expect(
+      votingValid.connect(accounts[0]).vote("Xbox")
+    ).to.be.revertedWith("You have already voted.");
+  });
+});

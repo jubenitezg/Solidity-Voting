@@ -44,12 +44,16 @@ contract Voting {
         return timeEnd;
     }
 
+    function getVoteCount(string memory candidate) public view returns (uint) {
+        return candidateVotes[candidate];
+    }
+
     function getWinner() public view returns (string memory) {
         require(block.timestamp > timeEnd, "Voting is still ongoing.");
         uint maxVotes = 0;
         string memory winner;
         for (uint i = 0; i < candidates.length; i++) {
-            if (candidateVotes[candidates[i]] > maxVotes) {
+            if (getVoteCount(candidates[i]) > maxVotes) {
                 maxVotes = candidateVotes[candidates[i]];
                 winner = candidates[i];
             }
