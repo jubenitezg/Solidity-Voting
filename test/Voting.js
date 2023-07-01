@@ -27,7 +27,7 @@ const waitNextBlock = async () => {
 };
 
 describe("Voting", function () {
-  let candidates = ["Xbox", "Playstation", "Nintendo", "PC"];
+  let candidates = ["xbox", "playstation", "nintendo", "pc"];
   let accounts;
 
   let votingValid;
@@ -48,20 +48,20 @@ describe("Voting", function () {
   });
 
   it("Should allow to vote", async function () {
-    await votingValid.connect(accounts[0]).vote("Xbox");
-    let voteCount = await votingValid.getVoteCount("Xbox");
+    await votingValid.connect(accounts[0]).vote("pc");
+    let voteCount = await votingValid.getVoteCount("pc");
     expect(voteCount).to.equal(1);
   });
 
   it("Should not allow to vote in invalid time", async function () {
     await expect(
-      votingExpired.connect(accounts[0]).vote("Xbox")
+      votingExpired.connect(accounts[0]).vote("pc")
     ).to.be.revertedWith("Voting is only not allowed at this time.");
   });
 
   it("Should not allow to vote twice", async function () {
     await expect(
-      votingValid.connect(accounts[0]).vote("Xbox")
+      votingValid.connect(accounts[0]).vote("pc")
     ).to.be.revertedWith("You have already voted.");
   });
 });
