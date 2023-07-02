@@ -9,8 +9,8 @@ const hre = require("hardhat");
 async function main() {
   const Voting = await hre.ethers.getContractFactory("Voting");
   const timeStart = Math.floor(Date.now() / 1000) + 60;
-  const timeEnd = timeStart + 3600; // 1 hour
-  const candidates = ["Xbox", "Playstation", "Nintendo", "PC"];
+  const timeEnd = timeStart + 180;
+  const candidates = ["pc", "playstation", "nintendo", "xbox"];
   const voting = await Voting.deploy(timeStart, timeEnd, candidates);
   await voting.deployed();
   console.log("Voting deployed to:", voting.address);

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="css/voting.css" />
+    <style>
+      .header {
+        font-family: sans-serif;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Voting for the Best Gaming Platform</h1>
+      <br />
+      <h3>Voting starts at: <span id="timeStart">Loading...</span></h3>
+      <h3>Voting ends at: <span id="timeEnd">Loading...</span></h3>
+      <form onsubmit="return false">
+        <label for="candidates"
+          >Select to vote: <span id="status"> Loading...</span>
+        </label>
+        <br />
+        <select id="candidates" name="candidates"></select>
+        <input id="vote-input" type="submit" value="Vote" onclick="vote()" />
+      </form>
+      <p>The winner is: <span id="winner">???</span></p>
+    </div>
+    <script type="text/javascript" src="js/voting.js"></script>
+  </body>
+</html>

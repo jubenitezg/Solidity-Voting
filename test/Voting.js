@@ -49,6 +49,7 @@ describe("Voting", function () {
 
   it("Should allow to vote", async function () {
     await votingValid.connect(accounts[0]).vote("pc");
+    await waitNextBlock();
     let voteCount = await votingValid.getVoteCount("pc");
     expect(voteCount).to.equal(1);
   });
